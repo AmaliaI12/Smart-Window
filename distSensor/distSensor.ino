@@ -1,19 +1,19 @@
 #include <Servo.h>
 #define TRIG_PIN 4
 #define ECHO_PIN 5
-#define SERVO_PIN 10
+#define DIST_SERVO 10
 #define DIST 8
 
-Servo windowServo;
+Servo distServo;
 int pos = 0;
 
 void toggleServo(int *pos) {
   if((*pos) == 1)
   {
-    windowServo.write(180);
+    distServo.write(180);
     (*pos) = 0;
   } else {
-    windowServo.write(0);
+    distServo.write(0);
     (*pos) = 1;
   }
 }
@@ -22,8 +22,8 @@ void setup() {
   Serial.begin(9600);
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-  windowServo.attach(SERVO_PIN);
-  windowServo.write(0);
+  distServo.attach(DIST_SERVO);
+  distServo.write(0);
 }
 
 void loop() {

@@ -107,8 +107,10 @@ void openWindow() {
     delay(1000);
 
     // Close the window
-    for (int pos = 90 ; pos >= 0; pos--)
+    for (int pos = 45 ; pos >= 0; pos--) {
         distServo.write(pos);
+        delay(30);
+    }
 
     lcd.setCursor(2, 1);
     lcd.print("CLOSED            ");
@@ -122,9 +124,13 @@ void openWindow() {
     lcd.print("OPENING...             ");
     delay(1000);
 
+
     // Open the window
-    for (int pos = 0 ; pos <= 90; pos++)
+    for (int pos = 0 ; pos <= 45; pos++) {
         distServo.write(pos);
+        delay(30);
+    }
+      
   
     lcd.setCursor(2, 1);
     lcd.print("OPEN              ");

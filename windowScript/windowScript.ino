@@ -26,7 +26,7 @@ DFRobot_DHT11 DHT;
 //Thresholds
 #define DIST_THRESHOLD 8
 #define TEMP_THRESHOLD 23
-#define VENT_THRESHOLD 27
+#define VENT_THRESHOLD 25
 
 Servo distServo;
 Servo tempServo;
@@ -66,8 +66,8 @@ void slideWindow() {
     lcd.print("SLIDING DOWN...       "); //Display action message
     delay(1000);
 
-    tempServo.write(180);
-    delay(1350);
+    tempServo.write(0);
+    delay(1250);
   
     // Stop the servo
     tempServo.write(90);
@@ -85,7 +85,7 @@ void slideWindow() {
     delay(1000);
 
     // Slide up the window
-    tempServo.write(0);
+    tempServo.write(180);
     delay(1350);
 
     // Stop the servo
@@ -107,7 +107,7 @@ void openWindow() {
     delay(1000);
 
     // Close the window
-    for (int pos = 45 ; pos >= 0; pos--) {
+    for (int pos = 35 ; pos >= 0; pos--) {
         distServo.write(pos);
         delay(30);
     }
@@ -126,7 +126,7 @@ void openWindow() {
 
 
     // Open the window
-    for (int pos = 0 ; pos <= 45; pos++) {
+    for (int pos = 0 ; pos <= 35; pos++) {
         distServo.write(pos);
         delay(30);
     }
@@ -187,6 +187,9 @@ void loop() {
   lcd.print("Temp: ");
   lcd.print(temp);
   lcd.print(" C   ");
+
+
+
 
   // Open and close the window depending on the temperature
   if (temp > TEMP_THRESHOLD) {
